@@ -11,8 +11,9 @@ def main() -> int:
         f"Start mirroring {len(repos)} "
         f"repositories to {cfg.get('target')} ...")
     successful, failed = 0, 0
-    for r in repos:
-        print(f"Mirroring {r.owner_login}/{r.name} ...")
+    repos_len = len(repos)
+    for i, r in enumerate(repos):
+        print(f"[{i}/{repos_len}] Mirroring {r.owner_login}/{r.name} ...")
         try:
             repo.mirror(cfg.get('target'), r)
             successful += 1
