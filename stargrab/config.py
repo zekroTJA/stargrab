@@ -9,7 +9,8 @@ from pathlib import Path
 _DEF_CFG = {
     "github_token": "",
     "user": "",
-    "target": "repositories"
+    "target": "repositories",
+    "ignore": ""
 }
 
 

@@ -28,6 +28,9 @@ class Repository:
             "topics": self.topics,
         }
 
+    def fqn(self) -> str:
+        return f"{self.owner_login}/{self.name}".lower()
+
 
 class Client:
     def __init__(self, token: str):
