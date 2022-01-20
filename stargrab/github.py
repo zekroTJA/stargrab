@@ -1,4 +1,5 @@
 import json
+from pydoc_data.topics import topics
 from typing import Dict, List, Tuple
 import requests
 
@@ -12,6 +13,20 @@ class Repository:
         self.owner_login = v.get("node").get('owner').get('login')
         self.name = v.get("node").get('name')
         self.url = v.get("node").get('url')
+        self.language = (v.get("node").get(
+            "primaryLanguage") or {}).get("name")
+        _topics = v.get("node").get("repositoryTopics").get("edges")
+        self.topics = [e.get("node").get("topic").get("name")
+                       for e in _topics]
+
+    def map(self) -> Dict:
+        return {
+            "owner_login": self.owner_login,
+            "name": self.name,
+            "url": self.url,
+            "language": self.language,
+            "topics": self.topics,
+        }
 
 
 class Client:
@@ -50,7 +65,19 @@ class Client:
                                     login
                                 }},
                                 name,
-                                url
+                                url,
+                                primaryLanguage {{
+                                    name
+                                }},
+                                repositoryTopics(first: 10) {{
+                                    edges {{
+                                        node {{
+                                            topic {{
+                                                name
+                                            }}
+                                        }}
+                                    }}
+                                }}
                             }}
                         }}
                     }}

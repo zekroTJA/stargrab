@@ -7,6 +7,7 @@ def main() -> int:
     cfg = config.parse()
     client = github.Client(cfg.get("github_token"))
     repos = client.get_starred_repositories(cfg.get("user"))
+    repo.store_meta(cfg.get('target'), repos)
     print(
         f"Start mirroring {len(repos)} "
         f"repositories to {cfg.get('target')} ...")
