@@ -26,6 +26,11 @@ Now, clone the repository into your home directory.
 git clone https://github.com/zekrotja/stargrab ~/stargrab
 ```
 
+Then, you want to install the required dependencies of the script.
+```
+python3 -m pip install -r ~/stargrab/requirements.txt
+```
+
 After that, create a location to store the repository mirrors to.
 ```
 mkdir ~/stargrab_repos
@@ -44,7 +49,7 @@ crontab -e
 
 The entry could look like following. This will execute the mirroring every day at 3am.
 ```
-0 3 * * * /home/<yourUserName>/stargrab/stargrab/main.py >> /home/<yourUserName>/stargrab/log 2>&1
+0 3 * * * python3 /home/<yourUserName>/stargrab/stargrab/main.py >> /home/<yourUserName>/stargrab/log 2>&1
 ```
 
 ## Run with Docker
