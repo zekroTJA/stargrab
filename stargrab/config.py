@@ -10,7 +10,8 @@ _DEF_CFG = {
     "github_token": "",
     "user": "",
     "target": "repositories",
-    "ignore": ""
+    "ignore": "",
+    "depth": ""
 }
 
 

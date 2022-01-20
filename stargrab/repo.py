@@ -5,12 +5,14 @@ from typing import List
 from github import Repository
 
 
-def mirror(root_dir: str, repo: Repository):
+def mirror(root_dir: str, repo: Repository, depth: int = None):
     repo_dir = path.join(root_dir, repo.owner_login, repo.name)
     if path.exists(repo_dir):
         _git(f"-C {repo_dir} fetch --all")
     else:
-        _git(f"clone --bare {repo.url} {repo_dir}")
+        d = f"--depth {depth}" if depth else ""
+        print(d)
+        _git(f"clone --bare {d} {repo.url} {repo_dir}")
 
 
 def store_meta(root_dir: str, repos: List[Repository]):

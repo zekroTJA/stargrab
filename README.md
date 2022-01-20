@@ -17,6 +17,7 @@ These are the available configurations.
 | `target` | `string` | No (default: `repositories`) | The target location where repository mirros should be stored. |
 | `user` | `string` | No (default: `viewer`) | The user to grab starred repositories from. Defaultly, this will be the user authenticated with the GitHub token. |
 | `ignore` | `string` | No | A regular expression applied on the lowercased `username/reponame` of each repository. When it matches, the repository is ignored. |
+| `depth` | `number` | No | Specify a maximum commit depth for repositories on initial clone. |
 
 ## Run barely
 
