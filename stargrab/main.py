@@ -1,7 +1,7 @@
-import re
 import config
 import github
 import repo
+import util
 
 
 def main() -> int:
@@ -9,10 +9,7 @@ def main() -> int:
     client = github.Client(cfg.get("github_token"))
     repos = client.get_starred_repositories(cfg.get("user"))
 
-    if ignore_pattern := cfg.get("ignore"):
-        p = re.compile(ignore_pattern)
-        repos = [r for r in repos if not p.fullmatch(r.fqn())]
-
+    repos = util.filter_ignore(cfg, repos)
     repos_len = len(repos)
 
     repo.store_meta(cfg.get("target"), repos)
@@ -30,7 +27,7 @@ def main() -> int:
         except Exception as e:
             print(f"Error: {e}")
             failed += 1
-            
+
     print(
         "Finished!\n"
         f"Successfully mirrored: {successful}\n"

@@ -1,5 +1,4 @@
 import json
-from pydoc_data.topics import topics
 from typing import Dict, List, Tuple
 import requests
 
@@ -51,10 +50,11 @@ class Client:
             after = r[-1].cursor
         return repos
 
-    def _get_starred_repositories_paged(self,
-                                        user_override: str,
-                                        after: str
-                                        ) -> Tuple[int, List[Repository]]:
+    def _get_starred_repositories_paged(
+        self,
+        user_override: str,
+        after: str,
+    ) -> Tuple[int, List[Repository]]:
         user = f'user(login:"{user_override}")' if user_override else "viewer"
         query = f"""
             query {{
