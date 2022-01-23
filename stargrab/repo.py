@@ -31,7 +31,11 @@ def store_meta(root_dir: str, repos: List[Repository]):
 
 
 def _git(cmd: str):
-    res = subprocess.run(f"git {cmd}".split())
+    res = subprocess.run(
+        f"git {cmd}".split(),
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.STDOUT,
+    )
     if res.returncode != 0:
         raise Exception(
             res.stderr or res.stdout or f"unknown error: {res.returncode}")
