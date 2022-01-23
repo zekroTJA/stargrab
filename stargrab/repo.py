@@ -8,7 +8,7 @@ from github import Repository
 def mirror(root_dir: str, repo: Repository, depth: int = None):
     repo_dir = path.join(root_dir, repo.owner_login, repo.name)
     if path.exists(repo_dir):
-        _git(f"-C {repo_dir} fetch --all")
+        _git(f"-C {repo_dir} fetch origin *:*")
     else:
         d = f"--depth {depth}" if depth else ""
         print(d)
