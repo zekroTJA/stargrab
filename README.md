@@ -75,5 +75,5 @@ crontab -e
 
 The entry could look like following. This will execute the mirroring every day at 3am.
 ```
-0 3 * * * docker run --rm --env SG_GITHUB_TOKEN="<yourGitHubToken> -v /home/<yourUserName>/stargrab_repos:/var/repos stargrab
+0 3 * * * docker run --rm --env SG_GITHUB_TOKEN="<yourGitHubToken>" -v /home/<yourUserName>/stargrab_repos:/var/repos stargrab
 ```
