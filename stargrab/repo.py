@@ -13,6 +13,7 @@ def mirror(root_dir: str, repo: Repository, depth: int = None):
         d = f"--depth {depth}" if depth else ""
         print(d)
         _git(f"clone --bare {d} {repo.url} {repo_dir}")
+    _store_description(repo_dir, repo.description)
 
 
 def store_meta(root_dir: str, repos: List[Repository]):
@@ -40,3 +41,11 @@ def _git(cmd: str):
         raise Exception(
             res.stderr or res.stdout or f"unknown error: {res.returncode}")
     return res.stdout
+
+
+def _store_description(repo_dir: str, desc: str):
+    if not desc:
+        return
+    dfile = path.join(repo_dir, "description")
+    with open(dfile, "w+", encoding='utf-8') as f:
+        f.write(desc)

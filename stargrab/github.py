@@ -11,6 +11,7 @@ class Repository:
         self.cursor = v.get("cursor")
         self.owner_login = v.get("node").get('owner').get('login')
         self.name = v.get("node").get('name')
+        self.description = v.get("node").get("description")
         self.url = v.get("node").get('url')
         self.language = (v.get("node").get(
             "primaryLanguage") or {}).get("name")
@@ -68,6 +69,7 @@ class Client:
                                     login
                                 }},
                                 name,
+                                description,
                                 url,
                                 primaryLanguage {{
                                     name
