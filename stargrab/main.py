@@ -7,9 +7,12 @@ import util
 def main() -> int:
     cfg = config.parse()
     client = github.Client(cfg.get("github_token"))
+
+    print("Fetching starred repos from GitHub ...")
     repos = client.get_starred_repositories(cfg.get("user"))
 
     repos = util.filter_ignore(cfg, repos)
+    repos = util.filter_size(cfg, repos)
     repos_len = len(repos)
 
     repo.store_meta(cfg.get("target"), repos)

@@ -11,7 +11,8 @@ _DEF_CFG = {
     "user": "",
     "target": "repositories",
     "ignore": "",
-    "depth": ""
+    "depth": "",
+    "max_size": ""
 }
 
 

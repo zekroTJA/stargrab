@@ -12,6 +12,7 @@ class Repository:
         self.owner_login = v.get("node").get('owner').get('login')
         self.name = v.get("node").get('name')
         self.description = v.get("node").get("description")
+        self.size = v.get("node").get("diskUsage")
         self.url = v.get("node").get('url')
         self.language = (v.get("node").get(
             "primaryLanguage") or {}).get("name")
@@ -26,6 +27,7 @@ class Repository:
             "url": self.url,
             "language": self.language,
             "topics": self.topics,
+            "size": self.size,
         }
 
     def fqn(self) -> str:
@@ -70,6 +72,7 @@ class Client:
                                 }},
                                 name,
                                 description,
+                                diskUsage,
                                 url,
                                 primaryLanguage {{
                                     name

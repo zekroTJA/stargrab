@@ -11,7 +11,6 @@ def mirror(root_dir: str, repo: Repository, depth: int = None):
         _git(f"-C {repo_dir} fetch origin refs/heads/*:refs/heads/*")
     else:
         d = f"--depth {depth}" if depth else ""
-        print(d)
         _git(f"clone --bare {d} {repo.url} {repo_dir}")
     _store_description(repo_dir, repo.description)
 
