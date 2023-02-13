@@ -18,7 +18,7 @@ These are the available configurations.
 | `user` | `string` | No (default: `viewer`) | The user to grab starred repositories from. Defaultly, this will be the user authenticated with the GitHub token. |
 | `ignore` | `string` | No | A regular expression applied on the lowercased `username/reponame` of each repository. When it matches, the repository is ignored. |
 | `depth` | `number` | No | Specify a maximum commit depth for repositories on initial clone. |
-| `max_size` | `string | number` | No | Filter repositories for maximum disk size. Only repos that are smaller than this value will be stored. |
+| `max_size` | `string` or `number` | No | Filter repositories for maximum disk size. Only repos that are smaller than this value will be stored. |
 
 ## Run barely
 
